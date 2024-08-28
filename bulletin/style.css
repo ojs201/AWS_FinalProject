@@ -1,0 +1,205 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+form th, form td {
+    padding: 10px;
+    text-align: left;
+}
+
+form th {
+    width: 20%;
+    background-color: #f0f0f0;
+    color: #333;
+    border-right: 1px solid #ddd;
+}
+
+form td input[type="text"], form td input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form td input[type="file"] {
+    padding: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+ul#articles {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul#articles > li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul#articles > li:hover {
+    background-color: #e0e0e0;
+}
+
+#register-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 15px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#register-button:hover {
+    background-color: #0056b3;
+}
+
+.article-box {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.article-title-box {
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.article-content-box {
+    background-color: #fff;
+    text-align: center;
+}
+
+
+#article-detail img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin: 0 auto 20px;
+}
+
+#article-detail h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#article-detail p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* 추가된 스타일링 */
+.article-title {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.article-content {
+    margin-top: 20px;
+}
+
+.article-content img {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.article-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* 검색창과 검색 버튼 스타일링 */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-right: none;
+}
+
+#search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: 1px solid #007BFF;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

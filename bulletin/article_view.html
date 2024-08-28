@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>게시물 보기 페이지</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+</head>
+<body onload="getArticles()">
+    <div class="container">
+        <h1>게시물 목록</h1>
+        <ul id="articles"></ul>
+        
+        <!-- 검색창과 검색 버튼 -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="검색어를 입력하세요...">
+            <button id="search-button" onclick="filterArticles()">검색</button>
+        </div>
+
+        <button id="register-button" onclick="goToArticleAddPage()">등록</button>
+    </div>
+
+    <script>
+        let article_arr = [];
+
+        const URL = "https://8uetkgzthk.execute-api.ap-northeast-2.amazonaws.com/2024-08-26/article_resource";
+
+        function getArticles() {
+            fetch(URL, {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(resp => resp.json())
+            .then(function(data) {
+                article_arr = data.Items;
+
+                // timestamp 기준으로 최신순으로 정렬
+                article_arr.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                displayArticles(article_arr);
+            })
+            .catch(err => console.log(err));
+        }
+
+        function displayArticles(articles) {
+            const articlesList = document.getElementById('articles');
+            articlesList.innerHTML = '';
+
+            articles.forEach(function(article) {
+                let li = document.createElement('li'); 
+                li.innerHTML = article.title;
+                li.onclick = function() {
+                    viewArticleDetail(article.article_id);
+                };
+                articlesList.appendChild(li);
+            });
+        }
+
+        function filterArticles() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredArticles = article_arr.filter(article => 
+                article.title.toLowerCase().includes(searchInput) || 
+                article.content.toLowerCase().includes(searchInput)
+            );
+            displayArticles(filteredArticles);
+        }
+
+        function goToArticleAddPage() {
+            window.location.href = 'article_add.html';  // 게시물 등록 페이지로 이동
+        }
+
+        function viewArticleDetail(article_id) {
+            window.location.href = 'article_detail.html?id=' + article_id;  // 게시물 상세 보기 페이지로 이동
+        }
+    </script>
+</body>
+</html>

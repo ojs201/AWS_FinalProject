@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>글 등록 페이지</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="./js/s3_photoExample.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div style="text-align: center;"><h1>글 등록 페이지</h1></div>
+        <form name="article_add_form" method="POST">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <td><input type="text" id="title" required></td>
+                </tr>
+                <tr>
+                    <th>Content</th>
+                    <td><input type="text" id="content" required></td>
+                </tr>
+                <tr>
+                    <th>사진</th>
+                    <td><input type="file" id="article_image" name="filename"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center;">
+                        <button type="button" onclick="submitToAPI(event)">등록</button>
+                        <button type="button" onclick="cancelAndGoBack()">취소</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        function submitToAPI(e) {
+            e.preventDefault();
+            add_article_with_photo('images', function() {
+                window.location.href = 'article_view.html';  // 등록 후 게시물 목록 페이지로 이동
+            });
+        }
+
+        function cancelAndGoBack() {
+            window.location.href = 'article_view.html';  // 게시물 보기 페이지로 이동
+        }
+    </script>
+</body>
+</html>
