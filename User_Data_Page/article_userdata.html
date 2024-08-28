@@ -17,34 +17,59 @@
                     <a href="#" class="nav-link">guide</a>
                 </nav>
             </div>
-            <button class="btn">User Data</button>
+            <button class="userdata_btn">User Data</button>
         </header>
 
         <main class="main">
+            <!-- 배경 사진. -->
             <div class="hero" style="background-image: url('./img/wallpaperbetter.png');">
             </div>
 
         <!-- 프로필 섹션 제목. -->
+            <section class="profile-name-section">
+                <span class="Title"><h2>User Data</h2></span>
+            </section>
 
-            <div class="profile-name-section">
-                <h2>User Data</h2>
-            </div>
+        <!-- 프로필 메인 섹션 (유저 정보들). -->
+        <main class="profile-main">
+            <section class="profile-section">
 
+                <!-- 그래프 위쪽 (가로 배치). -->
+                <section class="profile-up-section">
+                    <section class="profile-picture-section">
+                        <!-- 사용자 프로필. -->
+                        <div class="profile-picture-box">
+                            <h2>사용자 프로필</h2>
+                            <img src="./img/profile_picture.png" alt="Main Server" class="server-img">
+                            <p class="server-description"><strong>자기 소개</strong> — 마인크래프트인데~ EKS 클러스터에서 동작합니다.</p>
+                        </div>
+                    </section>
+    
+                    <section class="profile-graph-section">
+                        <div class="profile-box">
+                            <h2>Email-Address</h2>
+                            <p class="server-description"><strong>jinwo25803@gmail.com </p>
+                        </div>
+                    
+                        <div class="profile-box">
+                            <h2>현재 재화 정보량</h2>
+                            <p class="server-description"><strong>30,000 gold</strong> </p>
+                        </div>
+                    </section>
 
-        <main class="header">
-            <div class="profile-section">
-                <div class="profile-box">
-                    <h2>Main Server</h2>
-                    <img src="./img/Main-Server.png" alt="Main Server" class="server-img">
-                    <p class="server-description"><strong>Central California</strong> — The person who grew these was located in Central California and, er, hopefully very well-compensated.</p>
-                </div>
-            
-                <div class="profile-box">
-                    <h2>Private Server</h2>
-                    <img src="./img/Private-Server.png" alt="Private Server" class="server-img">
-                    <p class="server-description"><strong>Central California</strong> — The person who grew these was located in Central California and, er, hopefully very well-compensated.</p>
-                </div>
-            </div>
+                </section>
+
+                <!-- 그래프 아래쪽 로그아웃 버튼. -->
+                <section class="profile-logout-section">
+                    <div class="profile-button-box">
+                        <button class="logout_btn">프로필 사진 변경하기</button>
+                    </div>
+                    <div class="profile-button-box">
+                        <button class="logout_btn">Logout</button>
+                    </div>
+                </section>
+                
+            </section>
         </main>
 
         <footer class="footer">
