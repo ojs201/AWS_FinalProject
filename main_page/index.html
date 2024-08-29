@@ -10,14 +10,14 @@
     <div class="container">
         <header class="header">
             <div class="logo-nav">
-                <span class="logo">Hama Logo</span>
+                <a href="index.html" class="logo">Hama Logo</span>
                 <nav class="nav">
-                    <a href="#" class="nav-link">community</a>
+                    <a href="../bulletin/article_view.html" class="nav-link">community</a>
                     <a href="#" class="nav-link">news</a>
                     <a href="#" class="nav-link">guide</a>
                 </nav>
             </div>
-            <button class="btn">User Data</button>
+            <button class="btn" id="userDataButton" onClick="goToUserData()"></button>
         </header>
 
         <main class="main">
@@ -42,10 +42,29 @@
         <footer class="footer">
             <h3>WHAT WE BELIEVE</h3>
             <p>We believe in produce. Tasty produce. Produce like:</p>
-            <p>Apples. Oranges. Limes. Lemons. Guavas. Carrots. Cucumbers. Jicamas. Cauliflowers. Brussels sprouts. Shallots. Japanese eggplants. Asparagus. Artichokes—Jerusalem artichokes, too. Radishes. Broccoli. Baby broccoli. Broccolini. Bok choy. Scallions. Ginger. Cherries. Raspberries. Cilantro. Parsley. Dill.</p>
+            <p>...</p>
         </footer>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+        // 로그인 상태 확인
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userDataButton = document.getElementById('userDataButton');
+
+            if (isLoggedIn === 'true') {
+                userDataButton.textContent = 'User Data';
+                userDataButton.onclick = function() {
+                    // 사용자 데이터 페이지로 이동 (예: user_data.html)
+                    window.location.href = 'user_data.html';
+                };
+            } else {
+                userDataButton.textContent = 'Login';
+                userDataButton.onclick = function() {
+                    window.location.href = '../login_page/login.html';
+                };
+            }
+        };
+    </script>
 </body>
 </html>

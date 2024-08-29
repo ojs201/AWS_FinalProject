@@ -1,6 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 예시: 'User Data' 버튼 클릭 시 알림창 표시
+/*document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.btn').addEventListener('click', () => {
         alert('User Data 버튼이 클릭되었습니다.');
     });
+});*/
+
+function goToUserData() {
+    window.location.href = './userdata'
+    }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const poolData = {
+        UserPoolId: 'ap-northeast-2_3OiUAjbBV', // 사용자 풀 ID
+        ClientId: '3kb48em8sbdqluujhfrcsq36i0', // 클라이언트 ID
+    };
+    
+    const logoutButton = document.querySelector('.profile_btn');
+
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function() {
+            const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+            const cognitoUser = userPool.getCurrentUser();
+
+            if (cognitoUser != null) {
+                cognitoUser.signOut(); // 사용자 로그아웃
+                localStorage.removeItem('isLoggedIn'); // 로컬스토리지에서 로그인 정보 제거
+                localStorage.removeItem('username');
+                window.location.href = 'index.html'; // 로그인 페이지로 리디렉션
+            }
+        });
+    }
 });
+
