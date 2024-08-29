@@ -7,6 +7,17 @@
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 </head>
 <body onload="getArticles()">
+    <header class="header">
+        <div class="logo-nav">
+            <a href="../main_page/index.html" class="logo">Hama Logo</span>
+            <nav class="nav">
+                <a href="../bulletin/article_view.html" class="nav-link">community</a>
+                <a href="#" class="nav-link">news</a>
+                <a href="#" class="nav-link">guide</a>
+            </nav>
+        </div>
+        <button class="btn" id="userDataButton" onClick="goToUserData()"></button>
+    </header>
     <div class="container">
         <h1>게시물 목록</h1>
         <ul id="articles"></ul>
@@ -21,6 +32,7 @@
     </div>
 
     <script>
+        
         let article_arr = [];
 
         const URL = "https://8uetkgzthk.execute-api.ap-northeast-2.amazonaws.com/2024-08-26/article_resource";

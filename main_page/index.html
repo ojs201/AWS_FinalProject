@@ -3,51 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="main-style.css">
-    <title>Hama - Mainpage</title>
+    <title>Hama Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="screen_header">
-        <div>Hama Logo</div>
-        <div>Community</div>
-        <div>News</div>
-        <div>Guide</div>
-        <div>User Data</div>
-    </header>
-    <div class="main_banner">
-        <button width="200px" height="200px">
-            <span>Game Start</span>
-        </button>
-    </div>
-    <div class="intro">
-        <section>
-            <div>Main Server</div>
-            <div>
-                <img src="./img/Main-Server.png">
+    <div class="container">
+        <header class="header">
+            <div class="logo-nav">
+                <a href="index.html" class="logo">Hama Logo</span>
+                <nav class="nav">
+                    <a href="../bulletin/article_view.html" class="nav-link">community</a>
+                    <a href="#" class="nav-link">news</a>
+                    <a href="#" class="nav-link">guide</a>
+                </nav>
             </div>
-            <div>
-                <span>Central California — The person who grew these was located in Central California and, er, hopefully very well-compensated.</span>
-            </div>
-        </section>
-        <section>
-            <div>Main Server</div>
-            <div>
-                <img src="./img/Private-Server.png">
-            </div>
-            <div>
-                <span>Central California — The person who grew these was located in Central California and, er, hopefully very well-compensated.</span>
-            </div>
-        </section>
-    </div>
-    <footer>
-        <div>We believe in produce. Tasty produce. Produce like:
+            <button class="btn" id="userDataButton" onClick="goToUserData()"></button>
+        </header>
 
-            Apples. Oranges. Limes. Lemons. Guavas. Carrots. Cucumbers. Jicamas. Cauliflowers. Brussels sprouts. Shallots. Japanese eggplants. Asparagus. Artichokes—Jerusalem artichokes, too. Radishes. Broccoli. Baby broccoli. Broccolini. Bok choy. Scallions. Ginger. Cherries. Raspberries. Cilantro. Parsley. Dill. 
-            
+        <main class="main">
+            <div class="hero" style="background-image: url('./img/main-banner.png');">
+                <button class="btn hero-btn">Game Start</button>
             </div>
-        <div>
-            Logo
-        </div>
-    </footer>
+
+            <div class="server-section">
+                <div class="server-box">
+                    <h2>Main Server</h2>
+                    <img src="./img/Main-Server.png" alt="Main Server" class="server-img">
+                    <p class="server-description"><strong>Central California</strong> — The person who grew these was located in Central California and, er, hopefully very well-compensated.</p>
+                </div>
+                <div class="server-box">
+                    <h2>Private Server</h2>
+                    <img src="./img/Private-Server.png" alt="Private Server" class="server-img">
+                    <p class="server-description"><strong>Central California</strong> — The person who grew these was located in Central California and, er, hopefully very well-compensated.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <h3>WHAT WE BELIEVE</h3>
+            <p>We believe in produce. Tasty produce. Produce like:</p>
+            <p>...</p>
+        </footer>
+    </div>
+
+    <script>
+        // 로그인 상태 확인
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userDataButton = document.getElementById('userDataButton');
+
+            if (isLoggedIn === 'true') {
+                userDataButton.textContent = 'User Data';
+                userDataButton.onclick = function() {
+                    // 사용자 데이터 페이지로 이동 (예: user_data.html)
+                    window.location.href = 'user_data.html';
+                };
+            } else {
+                userDataButton.textContent = 'Login';
+                userDataButton.onclick = function() {
+                    window.location.href = '../login_page/login.html';
+                };
+            }
+        };
+    </script>
 </body>
 </html>
