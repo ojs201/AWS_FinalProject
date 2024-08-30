@@ -20,7 +20,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'NicoMoji_Font', sans-serif !important;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
@@ -93,7 +93,6 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'NicoMoji_Font', sans-serif;
     transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
 }
 
@@ -111,7 +110,6 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'NicoMoji_Font', sans-serif;
     transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
 }
 
@@ -129,7 +127,6 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'NicoMoji_Font', sans-serif;
     transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
 }
 
@@ -163,7 +160,6 @@ body {
 
 .Title {
     font-size: 24px;
-    font-family: 'NicoMoji_Font', sans-serif;
     font-weight: bold;
     color: #1F386B;
     margin-left: 64px;
@@ -301,5 +297,15 @@ body {
 .footer p {
     font-size: 16px;
     color: #4a4a4a;
+}
+
+.btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
 }
 

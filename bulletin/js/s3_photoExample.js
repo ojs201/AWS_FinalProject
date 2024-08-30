@@ -28,12 +28,15 @@ function upload_to_db(img_location) {
     var article_title = document.querySelector("#title").value;
     var article_content = document.querySelector("#content").value;
 
+    var username = localStorage.getItem('username');
+
     var Item = {
         'article_id': article_id,
         'title': article_title,
         'content': article_content,
         'img_source': img_location,
         'timestamp': new Date().toISOString(), // 현재 시간을 ISO 포맷으로 추가
+        'author': username  // 작성자 정보 추가
     };
     console.log(Item);
 
