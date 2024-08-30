@@ -1,48 +1,7 @@
 const poolData = {
-    UserPoolId: 'ap-northeast-2_3OiUAjbBV', // 사용자 풀 ID
-    ClientId: '3kb48em8sbdqluujhfrcsq36i0', // 클라이언트 ID
+    UserPoolId: 'ap-northeast-2_XnwnHB64H', // 사용자 풀 ID
+    ClientId: '30ru3mhl5fgmsm9ll9h7kmh2p5', // 클라이언트 ID
 };
-
-function main() {
-    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-    const cognitoUser = userPool.getCurrentUser(); 
-
-    const currentUserData = {};
-
-    if (cognitoUser != null) {
-        cognitoUser.getSession((err, session) => {
-            if (err) {
-                console.log(err);
-                location.href = "login.html";
-            } else {
-                cognitoUser.getUserAttributes((err, result) => {
-                    if (err) {
-                        location.href = "login.html";
-                    } 
-
-                    for (let i = 0; i < result.length; i++) {
-                        currentUserData[result[i].getName()] = result[i].getValue();
-                    }
-
-                    document.getElementById("email").value = currentUserData["email"];
-
-                    const signoutButton = document.getElementById("signout");
-                    signoutButton.addEventListener("click", event => {
-                        cognitoUser.signOut();
-                        localStorage.removeItem('isLoggedIn'); // 로그아웃 시 localStorage에서 제거
-                        localStorage.removeItem('username');
-                        location.reload();
-                    });
-                    signoutButton.hidden = false;
-                });
-            }
-        });
-    } else {
-        location.href = "login.html";
-    }
-}
-
-
 
 // signup.html
 function SignUp() {
@@ -50,23 +9,15 @@ function SignUp() {
     var password = document.getElementById("password").value;
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-     // 이메일 속성을 추가합니다.
-    var attributeList = [];
-    var dataEmail = {
-        Name: 'email',
-        Value: username
-    };
-    
-    var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
-    attributeList.push(attributeEmail);
-
-    userPool.signUp(username, password, attributeList, null, function(err) {
+    userPool.signUp(username, password, null, null, function(
+        err
+    ) {
         if (err) {
-            alert(err.message || JSON.stringify(err));
+        alert(err.message || JSON.stringify(err));
             return;
         }
         window.location.href = 'confirm.html';
-    });         
+    });
 }
 
 // confirm.html
@@ -130,4 +81,48 @@ function Login() {
             alert("로그인 실패")
         }
     });
+}
+
+// main.html
+function main() {
+    // cognitoUser에 현재 유저 정보를 받아옴
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    const cognitoUser = userPool.getCurrentUser(); 
+
+
+    const currentUserData = {};
+
+    // 현재 cognitoUser가 null이 아니라면 세션 정보를 받아옴 (세션 정보가 없다면 로그인 페이지로 이동)
+  if (cognitoUser != null) {
+    cognitoUser.getSession((err, session) => {
+      if (err) {
+        console.log(err);
+        location.href = "login.html";
+      } else {
+        // 세션 정보가 유효하다면, cognitoUser에서 유저 속성을 확인(유저 속성이 없다면 로그인 페이지로 이동)
+        cognitoUser.getUserAttributes((err, result) => {
+          if (err) {
+            location.href = "login.html";
+          }
+
+          // 취득한 정보를 화면에 출력
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          }
+
+          document.getElementById("email").value = currentUserData["email"];
+
+          // 로그아웃
+          const signoutButton = document.getElementById("signout");
+          signoutButton.addEventListener("click", event => {
+            cognitoUser.signOut();
+            location.reload();
+          });
+          signoutButton.hidden = false;
+        });
+      }
+    });
+  } else {
+    location.href = "login.html";
+  }
 }
