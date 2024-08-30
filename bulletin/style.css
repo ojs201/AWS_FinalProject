@@ -142,6 +142,17 @@ ul#articles > li:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.container button {
+    padding: 15px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 #register-button:hover {
     background-color: #0056b3;
 }
