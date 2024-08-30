@@ -3,15 +3,6 @@
         alert('User Data 버튼이 클릭되었습니다.');
     });
 });*/
-$(function () {
-    document.getElementById('callModule').onclick = function()
-    {
-        var url = "sample://A";
-        var exec = document.createElement("a");
-        exec.setAttribute("href", url);
-        exec.click();
-    }
-});
 
 function goToUserData() {
     window.location.href = './userdata'
