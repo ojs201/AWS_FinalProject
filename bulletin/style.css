@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'NicoMoji_Font';
+    src: url('./fonts/NicoMoji-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -39,7 +46,7 @@
 /* style.css */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'NicoMoji_Font', sans-serif !important;
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
@@ -125,6 +132,17 @@ ul#articles > li:hover {
     position: fixed;
     right: 20px;
     bottom: 20px;
+    padding: 15px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.container button {
     padding: 15px 25px;
     background-color: #007BFF;
     color: white;
