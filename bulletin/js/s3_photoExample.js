@@ -1,6 +1,87 @@
 var albumBucketName = "hama-bulletin";
 var bucketRegion = "ap-northeast-2";
 var IdentityPoolId = "ap-northeast-2:9d74a2fa-0a5b-4206-948d-54e6082933d4";
+let currentPage = 1;
+const articlesPerPage = 10;
+
+function getArticles() {
+    fetch(URL, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(resp => resp.json())
+    .then(function(data) {
+        article_arr = data.Items;
+
+        // timestamp 기준으로 최신순으로 정렬
+        article_arr.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        displayArticles(article_arr, currentPage);
+    })
+    .catch(err => console.log(err));
+}
+
+function displayArticles(articles, page) {
+    const articlesList = document.getElementById('articles');
+    articlesList.innerHTML = '';
+
+    const startIndex = (page - 1) * articlesPerPage;
+    const endIndex = startIndex + articlesPerPage;
+    const paginatedArticles = articles.slice(startIndex, endIndex);
+
+    paginatedArticles.forEach(function(article) {
+        let li = document.createElement('li'); 
+        li.innerHTML = `
+            <h3>${article.title}</h3>
+            <p>작성자: ${article.author}</p>
+            <p>작성 시간: ${new Date(article.timestamp).toLocaleString()}</p>
+        `;
+        li.onclick = function() {
+            viewArticleDetail(article.article_id);
+        };
+        articlesList.appendChild(li);
+    });
+
+    // 페이지네이션 업데이트
+    updatePagination(articles.length, page);
+}
+
+function updatePagination(totalArticles, currentPage) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        let button = document.createElement('button');
+        button.textContent = i;
+        button.className = i === currentPage ? 'active' : '';
+
+        button.onclick = function() {
+            changePage(i);
+        };
+
+        pagination.appendChild(button);
+    }
+}
+
+function changePage(page) {
+    currentPage = page;
+    displayArticles(article_arr, currentPage);
+}
+
+function filterArticles() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const filteredArticles = article_arr.filter(article => 
+        article.title.toLowerCase().includes(searchInput) || 
+        article.content.toLowerCase().includes(searchInput)
+    );
+    currentPage = 1; // 검색 시 첫 페이지로 이동
+    displayArticles(filteredArticles, currentPage);
+}
+
  
 AWS.config.update({
   region: bucketRegion,
