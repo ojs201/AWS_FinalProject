@@ -1,0 +1,292 @@
+@font-face {
+    font-family: 'NicoMoji_Font';
+    src: url('./fonts/NicoMoji-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes blink {
+    0% {
+        background-color: #1e3a8a; /* 원래 배경색 */
+    }
+    50% {
+        background-color: #c4c4c4; /* 깜빡일 때 배경색 */
+    }
+    100% {
+        background-color: #1e3a8a; /* 원래 배경색으로 복귀 */
+    }
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-right: 64px;
+}
+
+.nav {
+    display: flex;
+    gap: 64px;
+}
+
+.nav-link {
+    font-size: 24px;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-family: 'NicoMoji_Font', sans-serif;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
+/* User Data 버튼 설정 */
+.userdata_btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'NicoMoji_Font', sans-serif;
+    transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
+}
+
+.userdata_btn:active {
+    animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
+}
+
+
+/* LogOut 버튼 설정 */
+.logout_btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'NicoMoji_Font', sans-serif;
+    transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
+}
+
+.logout_btn:active {
+    animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
+}
+
+
+/* LogOut 버튼 설정 */
+.profile_btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'NicoMoji_Font', sans-serif;
+    transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
+}
+
+.profile_btn:active {
+    animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.Title {
+    font-size: 24px;
+    font-family: 'NicoMoji_Font', sans-serif;
+    font-weight: bold;
+    color: #1F386B;
+    margin-left: 64px;
+}
+
+.profile-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-name-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    flex-direction: column;
+    padding: 8px;
+    background-color: #EAEDF2;
+}
+
+.profile-section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    padding: 32px;
+    background-color: #ffffff;
+}
+
+.profile-up-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-color: #ffffff;
+}
+
+.profile-picture-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #EAEDF2;
+}
+
+.profile-graph-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #EAEDF2;
+}
+
+.profile-logout-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #EAEDF2;
+}
+
+.profile-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+.profile-button-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+/* 사용자 프로필 이미지 박스 */
+.profile-picture-box {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+.server-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 32px;
+    background-color: #ffffff;
+}
+
+.server-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    text-align: center;
+}
+
+.server-img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    object-fit: cover;
+}
+
+.server-description {
+    font-size: 14px;
+    color: #4a4a4a;
+}
+
+.footer {
+    width: 100%;
+    padding: 32px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.footer h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.footer p {
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
