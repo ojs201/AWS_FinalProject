@@ -69,7 +69,7 @@ function uploadProfileImage() {
             return alert("Please choose a file to upload first.");
         }
         var file = files[0];
-        var fileName = `User_data/${email}/profile/${file.name}`;  // 이메일을 경로의 일부로 사용
+        var fileName = `User_Data/${email}/profile/${file.name}`;  // 이메일을 경로의 일부로 사용
 
         var upload = new AWS.S3.ManagedUpload({
             params: {
