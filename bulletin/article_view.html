@@ -5,11 +5,12 @@
     <title>게시물 보기 페이지</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="./js/s3_photoExample.js"></script>
 </head>
 <body onload="getArticles()">
     <header class="header">
         <div class="logo-nav">
-            <a href="../main_page/index.html" class="logo">Hama Logo</span>
+            <a href="../main_page/index.html" class="logo">Hama Logo</a>
             <nav class="nav">
                 <a href="../bulletin/article_view.html" class="nav-link">community</a>
                 <a href="#" class="nav-link">news</a>
@@ -21,6 +22,8 @@
     <div class="container">
         <h1>게시물 목록</h1>
         <ul id="articles"></ul>
+
+        <div id="pagination"></div>
         
         <!-- 검색창과 검색 버튼 -->
         <div class="search-container">
@@ -32,7 +35,6 @@
     </div>
 
     <script>
-        
         let article_arr = [];
 
         const URL = "https://8uetkgzthk.execute-api.ap-northeast-2.amazonaws.com/2024-08-26/article_resource";
@@ -62,7 +64,11 @@
 
             articles.forEach(function(article) {
                 let li = document.createElement('li'); 
-                li.innerHTML = article.title;
+                li.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>작성자: ${article.author}</p>
+                    <p>작성 시간: ${new Date(article.timestamp).toLocaleString()}</p>
+                `;
                 li.onclick = function() {
                     viewArticleDetail(article.article_id);
                 };
@@ -86,6 +92,7 @@
         function viewArticleDetail(article_id) {
             window.location.href = 'article_detail.html?id=' + article_id;  // 게시물 상세 보기 페이지로 이동
         }
+
     </script>
 </body>
 </html>

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hama Website</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,7 +14,7 @@
             <div class="logo-nav">
                 <a href="index.html" class="logo">Hama Logo</span>
                 <nav class="nav">
-                    <a href="../bulletin/article_view.html" class="nav-link">community</a>
+                    <a href="#" id="communityLink" class="nav-link">community</a>
                     <a href="#" class="nav-link">news</a>
                     <a href="#" class="nav-link">guide</a>
                 </nav>
@@ -24,8 +24,7 @@
 
         <main class="main">
             <div class="hero" style="background-image: url('./img/main-banner.png');">
-                <button class="hero-btn" id="callModule">Game Start</button>
-                
+                <button class="hero-btn" id="gameStartButton">Game Start</button>
             </div>
 
             <div class="server-section">
@@ -51,23 +50,12 @@
 
     <script>
         $(function () {
-    document.getElementById('callModule').onclick = function()
-    {
-        var url = "minecraft://";
-        var exec = document.createElement("a");
-        exec.setAttribute("href", url);
-        exec.click();
-    }
-});
-        // 로그인 상태 확인
-        window.onload = function() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const userDataButton = document.getElementById('userDataButton');
 
             if (isLoggedIn === 'true') {
                 userDataButton.textContent = 'User Data';
                 userDataButton.onclick = function() {
-                    // 사용자 데이터 페이지로 이동 (예: user_data.html)
                     window.location.href = 'user_data.html';
                 };
             } else {
@@ -76,7 +64,32 @@
                     window.location.href = '../login_page/login.html';
                 };
             }
-        };
+
+            // "community" 링크 클릭 이벤트 처리
+            const communityLink = document.getElementById('communityLink');
+            communityLink.addEventListener('click', function(event) {
+                if (isLoggedIn !== 'true') {
+                    event.preventDefault();
+                    alert("로그인 후 이용해주세요");
+                } else {
+                    window.location.href = '../bulletin/article_view.html';
+                }
+            });
+
+            // "Game Start" 버튼 클릭 이벤트 처리
+            const gameStartButton = document.getElementById('gameStartButton');
+            gameStartButton.addEventListener('click', function(event) {
+                if (isLoggedIn !== 'true') {
+                    alert("로그인 후 이용해주세요");
+                } else {
+                    // Minecraft 실행 코드
+                    var url = "minecraft://";
+                    var exec = document.createElement("a");
+                    exec.setAttribute("href", url);
+                    exec.click();
+                }
+            });
+        });
     </script>
 </body>
 </html>
