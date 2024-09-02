@@ -34,8 +34,6 @@
                             <div class="profile-picture-box">
                                 <h2 class="profile-picture-box-title">사용자 프로필</h2>
                                 <img src="./img/profile_picture.png" alt="Profile Picture" class="server-img" id="profile-picture">
-                                <input type="file" id="profile_image" accept="image/*">
-                                <button onclick="uploadProfileImage()">Upload Profile Image</button>
                                 <p id="upload-status"></p>
                             </div>
                         </section>
@@ -55,10 +53,16 @@
 
                     <section class="profile-logout-section">
                         <div class="profile-button-box">
-                            <button class="logout_btn">Change Profile</button>
+                            <!-- Change Profile 버튼: 파일 선택 창을 여는 버튼 -->
+                            <input type="file" id="profile_image" accept="image/*" style="display: none;">
+                            <button class="profile_btn" onclick="triggerFileInput()">Change Profile</button>
+                        
+                            <!-- Uploaded Profile Image 버튼: 업로드된 이미지 URL을 표시 -->
+                            <button class="uploaded_profile_btn" onclick="showUploadedImage()">Uploaded Profile Image</button>
                         </div>
                         <div class="profile-button-box">
-                            <button class="profile_btn">Logout</button>
+                            <!-- 기존 Logout 버튼 유지 -->
+                            <button class="logout_btn" onclick="logout()">Logout</button>
                         </div>
                     </section>
                 </section>
@@ -128,6 +132,14 @@
             }
         }
 
+        function triggerFileInput() {
+            document.getElementById('profile_image').click();
+        }
+
+        document.getElementById('profile_image').addEventListener('change', function() {
+            uploadProfileImage();
+        });
+
         function uploadProfileImage() {
             getCurrentUserEmail(function(email) {
                 var files = document.getElementById("profile_image").files;
@@ -135,7 +147,7 @@
                     return alert("Please choose a file to upload first.");
                 }
                 var file = files[0];
-                var fileName = `${email}/profile/${file.name}`;  // 이메일을 경로의 일부로 사용
+                var fileName = `User_Data/${email}/profile/${file.name}`;  // 이메일을 경로의 일부로 사용
 
                 var upload = new AWS.S3.ManagedUpload({
                     params: {
@@ -162,6 +174,31 @@
                     }
                 );
             });
+        }
+
+        function showUploadedImage() {
+            var profileImageUrl = document.getElementById('profile-picture').src;
+            if (profileImageUrl && profileImageUrl !== "./img/profile_picture.png") {
+                window.open(profileImageUrl, '_blank');
+            } else {
+                alert("No profile image uploaded.");
+            }
+        }
+
+        function logout() {
+            const poolData = {
+                UserPoolId: 'ap-northeast-2_XnwnHB64H',
+                ClientId: '30ru3mhl5fgmsm9ll9h7kmh2p5',
+            };
+
+            const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+            const cognitoUser = userPool.getCurrentUser();
+
+            if (cognitoUser != null) {
+                cognitoUser.signOut();
+                alert("Logged out successfully.");
+                window.location.href = "login.html"; // 로그인 페이지로 리디렉션
+            }
         }
     </script>
 </body>

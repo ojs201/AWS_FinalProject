@@ -140,6 +140,22 @@ body {
     animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
 }
 
+/* LogOut 버튼 설정 */
+.uploaded_profile_btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
+}
+
+.uploaded_profile_btn:active {
+    animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
+}
+
 .hero {
     position: relative;
     width: 100%;
