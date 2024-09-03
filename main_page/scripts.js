@@ -29,8 +29,8 @@ function loadUserProfile() {
 // 사용자 이메일 정보 가져오기
 function getCurrentUserEmail(callback) {
     const poolData = {
-        UserPoolId: 'ap-northeast-2_3OiUAjbBV', // 기존 script.js에서 사용하던 사용자 풀 ID
-        ClientId: '3kb48em8sbdqluujhfrcsq36i0', // 기존 script.js에서 사용하던 클라이언트 ID
+        UserPoolId: 'ap-northeast-2_XnwnHB64H', // 기존 script.js에서 사용하던 사용자 풀 ID
+        ClientId: '30ru3mhl5fgmsm9ll9h7kmh2p5', // 기존 script.js에서 사용하던 클라이언트 ID
     };
 
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -60,6 +60,15 @@ function getCurrentUserEmail(callback) {
         console.log("No current user");
     }
 }
+
+
+function triggerFileInput() {
+    document.getElementById('profile_image').click();
+}
+
+document.getElementById('profile_image').addEventListener('change', function() {
+    uploadProfileImage();
+});
 
 // 프로필 이미지 업로드 함수
 function uploadProfileImage() {
@@ -98,31 +107,35 @@ function uploadProfileImage() {
     });
 }
 
+function showUploadedImage() {
+    var profileImageUrl = document.getElementById('profile-picture').src;
+    if (profileImageUrl && profileImageUrl !== "./img/profile_picture.png") {
+        window.open(profileImageUrl, '_blank');
+    } else {
+        alert("No profile image uploaded.");
+    }
+}
+
 
 function goToUserData() {
     window.location.href = './userdata'
     }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const poolData = {
-        UserPoolId: 'ap-northeast-2_XnwnHB64H', // 사용자 풀 ID
-        ClientId: '30ru3mhl5fgmsm9ll9h7kmh2p5', // 클라이언트 ID
-    };
-    
-    const logoutButton = document.querySelector('.logout_btn');
+    function logout() {
+        const poolData = {
+            UserPoolId: 'ap-northeast-2_XnwnHB64H',
+            ClientId: '30ru3mhl5fgmsm9ll9h7kmh2p5',
+        };
 
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function() {
-            const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-            const cognitoUser = userPool.getCurrentUser();
+        const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+        const cognitoUser = userPool.getCurrentUser();
 
-            if (cognitoUser != null) {
-                cognitoUser.signOut(); // 사용자 로그아웃
-                localStorage.removeItem('isLoggedIn'); // 로컬스토리지에서 로그인 정보 제거
-                localStorage.removeItem('username');
-                window.location.href = 'index.html'; // 로그인 페이지로 리디렉션
-            }
-        });
+        if (cognitoUser != null) {
+            cognitoUser.signOut();
+            alert("Logged out successfully.");
+            localStorage.removeItem('isLoggedIn'); // 로컬스토리지에서 로그인 정보 제거
+            localStorage.removeItem('username');
+            window.location.href = "index.html"; // 로그인 페이지로 리디렉션
+        }
     }
-});
