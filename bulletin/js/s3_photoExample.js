@@ -121,20 +121,28 @@ function upload_to_db(img_location) {
     };
     console.log(Item);
 
-    const URL = "https://8uetkgzthk.execute-api.ap-northeast-2.amazonaws.com/2024-08-26/article_resource";
+    const URL = "https://8uetkgzthk.execute-api.ap-northeast-2.amazonaws.com/2024-08-26/zinucha-simpleboard";
 
     fetch(URL, {
         method: "POST",
         headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'  // Content-Type 명시 필요
         },
         body: JSON.stringify({
             "TableName": "simple_board",
-            Item
+            "Item": Item  // 명시적으로 Item 필드에 데이터 추가
         })
-    }).then(resp => console.log(resp))
-      .catch(err => console.log(err));
+    }).then(resp => {
+        if (resp.ok) {
+            console.log("POST 성공");
+        } else {
+            resp.json().then(data => console.log("POST 실패: ", data));
+        }
+    })
+    .catch(err => console.log('Error:', err));
 }
+
 
  
 function add_article_with_photo(albumName, callback) {
