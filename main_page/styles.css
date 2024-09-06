@@ -140,6 +140,22 @@ body {
     animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
 }
 
+/* LogOut 버튼 설정 */
+.uploaded_profile_btn {
+    padding: 8px 16px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* 버튼의 기본 배경색 전환 */
+}
+
+.uploaded_profile_btn:active {
+    animation: blink 0.2s linear 1; /* 버튼을 클릭할 때 애니메이션 실행 */
+}
+
 .hero {
     position: relative;
     width: 100%;
@@ -315,3 +331,82 @@ body {
     font-size: 16px;
 }
 
+/* 기본 설정은 이전과 동일하게 유지 */
+
+.profile-change-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: 32px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-change-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1F386B;
+    margin-bottom: 24px;
+}
+
+.profile-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1F386B;
+    margin-bottom: 12px;
+}
+
+.profile-picture-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.profile-picture-upload input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.profile-comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.profile-comment-section textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    min-height: 100px;
+}
+
+.save-profile_btn {
+    padding: 12px 24px;
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.save-profile_btn:hover {
+    background-color: #3b5998;
+}
+
+.save-profile_btn:active {
+    animation: blink 0.2s linear 1;
+}
