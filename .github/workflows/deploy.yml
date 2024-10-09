@@ -24,4 +24,4 @@ jobs:
 
       - name: Restart Nginx
         run: |
-          ssh -i mandi.pem -o StrictHostKeyChecking=no ubuntu@your-ec2-ip "sudo systemctl restart nginx"
+          ssh -i mandi.pem -o StrictHostKeyChecking=no ubuntu@43.201.250.130 "sudo systemctl restart nginx"
