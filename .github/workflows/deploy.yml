@@ -20,7 +20,7 @@ jobs:
 
       - name: Transfer files to EC2
         run: |
-          rsync -avz -e "ssh -i mandi.pem -o StrictHostKeyChecking=no" --delete-after ./ ubuntu@43.201.250.130:/var/www/html/
+          rsync -avz -e "ssh -i mandi.pem -o StrictHostKeyChecking=no" --delete-after ./ ubuntu@43.201.250.130:/var/www/html/AWS_FinalProject
 
       - name: Restart Nginx
         run: |
